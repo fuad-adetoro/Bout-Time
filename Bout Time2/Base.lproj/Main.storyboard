@@ -129,7 +129,7 @@
                                     <action selector="moveLabel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3C3-h0-iaI"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:35" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WOZ-Eu-RB1">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:35" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WOZ-Eu-RB1">
                                 <rect key="frame" x="89" y="573" width="193" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="i8k-e2-Qnx"/>

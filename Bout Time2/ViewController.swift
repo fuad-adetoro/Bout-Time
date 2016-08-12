@@ -46,7 +46,7 @@ class ViewController: UIViewController {
         let myEvent = SendEvent().sendEvent()
         let historic_event = HistoricEvent(firstEvent: myEvent.firstEvent, secondEvent: myEvent.secondEvent, thirdEvent: myEvent.thirdEvent, fourthEvent: myEvent.fourthEvent)
         firstEventLabel.text = historic_event.firstEvent
-        secondEventLabel.text = historic_event.secondEvent
+        secondEventLabel.text  = historic_event.secondEvent
         thirdEventLabel.text = historic_event.thirdEvent
         fourthEventLabel.text = historic_event.fourthEvent
         
