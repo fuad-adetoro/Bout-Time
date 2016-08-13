@@ -162,11 +162,34 @@
                                     <action selector="moveLabel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6vG-sU-UgI"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bout Time!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0rh-Yb-ALL">
+                                <rect key="frame" x="148" y="20" width="118" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.03014565537" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qMa-2a-cBI">
+                                <rect key="frame" x="20" y="400" width="374" height="48"/>
+                                <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="374" id="E4P-JW-5MZ"/>
+                                    <constraint firstAttribute="height" constant="48" id="axR-cS-Geg"/>
+                                </constraints>
+                                <color key="tintColor" red="0.35294117650000001" green="0.73333333329999995" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Begin Game!">
+                                    <color key="titleColor" red="0.35294117650000001" green="0.73333333329999995" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="beginGame" destination="BYZ-38-t0r" eventType="touchUpInside" id="hm2-bJ-CBZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.35294117650000001" green="0.73333333329999995" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="BAM-Be-3Hw" firstAttribute="top" secondItem="PMs-RP-yww" secondAttribute="bottom" id="3Tc-hq-Vyd"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="9Hp-ge-sqE" secondAttribute="bottom" constant="215" id="48A-bh-Wg1"/>
+                            <constraint firstItem="50d-Ka-zrk" firstAttribute="top" secondItem="0rh-Yb-ALL" secondAttribute="bottom" constant="112" id="4WP-u5-j5a"/>
                             <constraint firstItem="5Nr-y3-2wa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="51x-Yi-crO"/>
                             <constraint firstItem="VR1-BE-icn" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="7iW-sg-UIb"/>
                             <constraint firstItem="T9a-Zj-6l7" firstAttribute="top" secondItem="FKt-8n-9Ce" secondAttribute="bottom" id="7vE-yV-iKq"/>
@@ -175,6 +198,7 @@
                             <constraint firstItem="PMs-RP-yww" firstAttribute="top" secondItem="VR1-BE-icn" secondAttribute="bottom" constant="13" id="BJz-pE-8XV"/>
                             <constraint firstItem="WOZ-Eu-RB1" firstAttribute="top" secondItem="PHJ-Ti-TNo" secondAttribute="bottom" constant="52" id="Cyu-u3-fOn"/>
                             <constraint firstItem="VR1-BE-icn" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="DMh-FC-q5V"/>
+                            <constraint firstItem="0rh-Yb-ALL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="128" id="Fdj-za-zql"/>
                             <constraint firstItem="9Hp-ge-sqE" firstAttribute="top" secondItem="T9a-Zj-6l7" secondAttribute="bottom" constant="17" id="GtU-pM-Qru"/>
                             <constraint firstItem="PMs-RP-yww" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="ItV-Cv-LnC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="sVY-Qs-iNX" secondAttribute="trailing" constant="137" id="IuB-4t-FR7"/>
@@ -185,6 +209,7 @@
                             <constraint firstItem="5Nr-y3-2wa" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="Pn3-aE-5LO"/>
                             <constraint firstItem="VR1-BE-icn" firstAttribute="leading" secondItem="5Nr-y3-2wa" secondAttribute="trailing" id="Q6g-D3-LTB"/>
                             <constraint firstItem="sVY-Qs-iNX" firstAttribute="top" secondItem="WOZ-Eu-RB1" secondAttribute="bottom" constant="8" id="QOq-zZ-zbW"/>
+                            <constraint firstItem="VR1-BE-icn" firstAttribute="leading" secondItem="0rh-Yb-ALL" secondAttribute="trailing" constant="85" id="QSH-K8-a7w"/>
                             <constraint firstItem="9Hp-ge-sqE" firstAttribute="leading" secondItem="PHJ-Ti-TNo" secondAttribute="trailing" id="Qa8-Xg-N84"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="sVY-Qs-iNX" secondAttribute="bottom" constant="59" id="Xv5-dI-6Ol"/>
                             <constraint firstItem="5Nr-y3-2wa" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="YQV-9L-aMm"/>
@@ -192,9 +217,12 @@
                             <constraint firstItem="b5r-Bo-mVM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="bk5-W9-e5j"/>
                             <constraint firstItem="WOZ-Eu-RB1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="69" id="d8W-Ir-sog"/>
                             <constraint firstItem="FKt-8n-9Ce" firstAttribute="top" secondItem="BAM-Be-3Hw" secondAttribute="bottom" constant="15" id="dGB-DE-R1v"/>
+                            <constraint firstItem="0rh-Yb-ALL" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="dNb-wl-m3J"/>
                             <constraint firstItem="PHJ-Ti-TNo" firstAttribute="top" secondItem="b5r-Bo-mVM" secondAttribute="bottom" constant="17" id="drl-96-ZJd"/>
                             <constraint firstItem="sVY-Qs-iNX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="94" id="eFJ-0w-rh4"/>
                             <constraint firstItem="VR1-BE-icn" firstAttribute="leading" secondItem="5Nr-y3-2wa" secondAttribute="trailing" id="eQg-7D-2gW"/>
+                            <constraint firstItem="qMa-2a-cBI" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="ebw-tH-OZ5"/>
+                            <constraint firstItem="WOZ-Eu-RB1" firstAttribute="top" secondItem="qMa-2a-cBI" secondAttribute="bottom" constant="125" id="hzw-Mi-nOD"/>
                             <constraint firstItem="50d-Ka-zrk" firstAttribute="top" secondItem="5Nr-y3-2wa" secondAttribute="bottom" constant="13" id="kWb-Zf-oZt"/>
                             <constraint firstItem="BAM-Be-3Hw" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="pDj-MM-QD2"/>
                             <constraint firstItem="9Hp-ge-sqE" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="pZS-3R-pQ8"/>
@@ -202,6 +230,7 @@
                             <constraint firstItem="5Nr-y3-2wa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="rhj-OB-u4d"/>
                             <constraint firstItem="FKt-8n-9Ce" firstAttribute="top" secondItem="BAM-Be-3Hw" secondAttribute="bottom" constant="15" id="s7P-In-0ES"/>
                             <constraint firstAttribute="trailingMargin" secondItem="WOZ-Eu-RB1" secondAttribute="trailing" constant="112" id="tNz-34-uvJ"/>
+                            <constraint firstItem="qMa-2a-cBI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="vcb-YI-VxD"/>
                             <constraint firstItem="9Hp-ge-sqE" firstAttribute="top" secondItem="T9a-Zj-6l7" secondAttribute="bottom" constant="17" id="vm0-ng-TAR"/>
                             <constraint firstItem="50d-Ka-zrk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="vwb-6J-P3Y"/>
                             <constraint firstItem="T9a-Zj-6l7" firstAttribute="leading" secondItem="b5r-Bo-mVM" secondAttribute="trailing" id="w9F-ZE-Pf3"/>
@@ -210,9 +239,13 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="beginGameOutlet" destination="qMa-2a-cBI" id="nYZ-gD-Sba"/>
+                        <outlet property="boutTimeText" destination="0rh-Yb-ALL" id="pIU-N4-4kr"/>
+                        <outlet property="countDownLabel" destination="WOZ-Eu-RB1" id="Lli-p1-5c4"/>
                         <outlet property="firstEventLabel" destination="5Nr-y3-2wa" id="thK-Rl-Bvt"/>
                         <outlet property="fourthEventLabel" destination="PHJ-Ti-TNo" id="6b9-rF-goH"/>
                         <outlet property="secondEventLabel" destination="50d-Ka-zrk" id="0z4-ic-0GP"/>
+                        <outlet property="shakeToComplete" destination="sVY-Qs-iNX" id="VOT-DH-rRZ"/>
                         <outlet property="thirdEventLabel" destination="b5r-Bo-mVM" id="EUP-qW-b9i"/>
                         <outlet property="timerLabel" destination="WOZ-Eu-RB1" id="xrM-49-HS6"/>
                     </connections>
