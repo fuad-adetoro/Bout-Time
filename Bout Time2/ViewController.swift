@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController {
     
@@ -15,6 +16,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var thirdEventLabel: UILabel!
     @IBOutlet weak var fourthEventLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var countDownLabel: UILabel!
+    @IBOutlet weak var shakeToComplete: UILabel!
+    @IBOutlet weak var beginGameOutlet: UIButton!
+    @IBOutlet weak var boutTimeText: UILabel!
     
     @IBAction func moveLabel(sender: AnyObject) {
         let firstText = firstEventLabel.text
@@ -39,18 +44,61 @@ class ViewController: UIViewController {
         
     }
     
+    var count = 59
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        firstEventLabel.hidden = true
+        secondEventLabel.hidden = true
+        thirdEventLabel.hidden = true
+        fourthEventLabel.hidden = true
+        timerLabel.hidden = true
+        shakeToComplete.hidden = true
+    }
+    
+    @IBAction func beginGame() {
+        beginGameOutlet.hidden = true
+        boutTimeText.hidden = true
+        displayGame()
+        beginCountDown()
+        populateRandomText()
+    }
+    
+    func displayGame(){
+        firstEventLabel.hidden = false
+        secondEventLabel.hidden = false
+        thirdEventLabel.hidden = false
+        fourthEventLabel.hidden = false
+        timerLabel.hidden = false
+        shakeToComplete.hidden = false
+    }
+    
+    func beginCountDown(){
+        countDownLabel.text = "1:00"
+        _ = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ViewController.update), userInfo: nil, repeats: true)
+    }
+    
+    func populateRandomText(){
         let myEvent = SendEvent().sendEvent()
         let historic_event = HistoricEvent(firstEvent: myEvent.firstEvent, secondEvent: myEvent.secondEvent, thirdEvent: myEvent.thirdEvent, fourthEvent: myEvent.fourthEvent)
         firstEventLabel.text = historic_event.firstEvent
         secondEventLabel.text  = historic_event.secondEvent
         thirdEventLabel.text = historic_event.thirdEvent
         fourthEventLabel.text = historic_event.fourthEvent
+    }
+    
+    func update() {
         
-        //var timer = NSTimer(timeInterval: 0.5, target: self, selector: Selector("update"), userInfo: nil, repeats: false)
+        if(count > 0){
+            let minutes = String(count / 60)
+            let seconds = String(count % 60)
+            countDownLabel.text = minutes + ":" + seconds
+            count -= 1
+        } else if count == 0 {
+            // do suttin
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
