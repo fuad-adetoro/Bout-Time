@@ -27,9 +27,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var directionLabel4: UIButton!
     @IBOutlet weak var directionLabel5: UIButton!
     @IBOutlet weak var directionLabel6: UIButton!
+    @IBOutlet weak var nextRoundOutlet: UIButton!
+    
     var count = 59
     var keyDict: [Int]? = []
     var points = 0
+    var timer = NSTimer()
+    var roundsPlayed = 0
+    var roundLimits = 6
     
     @IBAction func moveLabel(sender: AnyObject) {
         let firstText = firstEventLabel.text
@@ -57,6 +62,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        hideElements()
+    }
+    
+    func hideElements() {
         firstEventLabel.hidden = true
         secondEventLabel.hidden = true
         thirdEventLabel.hidden = true
@@ -72,12 +81,27 @@ class ViewController: UIViewController {
         pointLabel.hidden = true
     }
     
+    override func canBecomeFirstResponder() -> Bool {
+        return true
+    }
+    
     @IBAction func beginGame() {
-        beginGameOutlet.hidden = true
-        boutTimeText.hidden = true
-        displayGame()
-        beginCountDown()
-        populateRandomText()
+        roundsPlayed += 1
+        if roundsPlayed <= roundLimits {
+            beginGameOutlet.hidden = true
+            boutTimeText.hidden = true
+            displayGame()
+            count = 59
+            beginCountDown()
+            populateRandomText()
+        } else {
+            roundsPlayed = 0
+            hideElements()
+            beginGameOutlet.hidden = false
+            pointLabel.hidden = false
+            
+            //nextRound()
+        }
     }
     
     func displayGame(){
@@ -93,12 +117,12 @@ class ViewController: UIViewController {
         directionLabel4.hidden = false
         directionLabel5.hidden = false
         directionLabel6.hidden = false
-        pointLabel.hidden = false
+        pointLabel.hidden = true
     }
     
     func beginCountDown(){
         countDownLabel.text = "1:00"
-        _ = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ViewController.update), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ViewController.update), userInfo: nil, repeats: true)
     }
     
     func populateRandomText(){
@@ -111,29 +135,83 @@ class ViewController: UIViewController {
         keyDict = myEvent.keyDict
     }
     
-    func update() {
-        if(count > 0){
+    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
+        if motion == .MotionShake {
+            update(true)
+        }
+    }
+    
+    func update(shakeDetected: Bool) {
+        
+        if count < 0 || shakeDetected == true {
+            timer.invalidate()
+            checkResults()
+            nextRoundOutlet.hidden = false
+            shakeToComplete.hidden = true
+        }else {
             let minutes = String(count / 60)
             let seconds = String(count % 60)
             countDownLabel.text = minutes + ":" + seconds
             count -= 1
-        } else {
-            //roundOverCheckResult()
         }
     }
     
-    /*func roundOverCheckResult(){
+    func checkResults(){
         if keyDict != nil {
             let firstKey = keyDict?.minElement()
+            var roundPoints: Int = 0
+            
             if firstKey != nil {
                 if firstEventLabel.text == historicEventsDict[firstKey!] {
-                    points += 1
+                    roundPoints += 1
                 }
+                let firstKeyIndex = keyDict?.indexOf(firstKey!)
+                keyDict?.removeAtIndex(firstKeyIndex!)
+            }
+            
+            let secondKey = keyDict?.minElement()
+            if secondKey != nil {
+                if secondEventLabel.text == historicEventsDict[secondKey!] {
+                    roundPoints += 1
+                }
+                let secondKeyIndex = keyDict?.indexOf(secondKey!)
+                keyDict?.removeAtIndex(secondKeyIndex!)
+            }
+            
+            let thirdKey = keyDict?.minElement()
+            if thirdKey != nil {
+                if thirdEventLabel.text == historicEventsDict[thirdKey!] {
+                    roundPoints += 1
+                }
+                let thirdKeyIndex = keyDict?.indexOf(thirdKey!)
+                keyDict?.removeAtIndex(thirdKeyIndex!)
+            }
+            
+            let fourthKey = keyDict?.minElement()
+            if fourthKey != nil {
+                if fourthEventLabel.text == historicEventsDict[fourthKey!] {
+                    roundPoints += 1
+                }
+                let fourthKeyIndex = keyDict?.indexOf(fourthKey!)
+                keyDict?.removeAtIndex(fourthKeyIndex!)
+            }
+            
+            if roundPoints == 4 {
+                updatePointLabel()
             }
         }
-        
-        pointLabel.text = "\(points)"
-    }*/
+    }
+    
+    @IBAction func nextRound() {
+        nextRoundOutlet.hidden = true
+        shakeToComplete.hidden = false
+        beginGame()
+    }
+    
+    func updatePointLabel(){
+        points += 1
+        pointLabel.text = "Game Points: \(points)/6"
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
