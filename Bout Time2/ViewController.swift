@@ -20,6 +20,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var shakeToComplete: UILabel!
     @IBOutlet weak var beginGameOutlet: UIButton!
     @IBOutlet weak var boutTimeText: UILabel!
+    @IBOutlet weak var pointLabel: UILabel!
+    @IBOutlet weak var directionLabel1: UIButton!
+    @IBOutlet weak var directionLabel2: UIButton!
+    @IBOutlet weak var directionLabel3: UIButton!
+    @IBOutlet weak var directionLabel4: UIButton!
+    @IBOutlet weak var directionLabel5: UIButton!
+    @IBOutlet weak var directionLabel6: UIButton!
+    var count = 59
+    var keyDict: [Int]? = []
+    var points = 0
     
     @IBAction func moveLabel(sender: AnyObject) {
         let firstText = firstEventLabel.text
@@ -44,8 +54,6 @@ class ViewController: UIViewController {
         
     }
     
-    var count = 59
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -55,6 +63,13 @@ class ViewController: UIViewController {
         fourthEventLabel.hidden = true
         timerLabel.hidden = true
         shakeToComplete.hidden = true
+        directionLabel1.hidden = true
+        directionLabel2.hidden = true
+        directionLabel3.hidden = true
+        directionLabel4.hidden = true
+        directionLabel5.hidden = true
+        directionLabel6.hidden = true
+        pointLabel.hidden = true
     }
     
     @IBAction func beginGame() {
@@ -72,6 +87,13 @@ class ViewController: UIViewController {
         fourthEventLabel.hidden = false
         timerLabel.hidden = false
         shakeToComplete.hidden = false
+        directionLabel1.hidden = false
+        directionLabel2.hidden = false
+        directionLabel3.hidden = false
+        directionLabel4.hidden = false
+        directionLabel5.hidden = false
+        directionLabel6.hidden = false
+        pointLabel.hidden = false
     }
     
     func beginCountDown(){
@@ -81,25 +103,37 @@ class ViewController: UIViewController {
     
     func populateRandomText(){
         let myEvent = SendEvent().sendEvent()
-        let historic_event = HistoricEvent(firstEvent: myEvent.firstEvent, secondEvent: myEvent.secondEvent, thirdEvent: myEvent.thirdEvent, fourthEvent: myEvent.fourthEvent)
-        firstEventLabel.text = historic_event.firstEvent
-        secondEventLabel.text  = historic_event.secondEvent
-        thirdEventLabel.text = historic_event.thirdEvent
-        fourthEventLabel.text = historic_event.fourthEvent
+            let historic_event = HistoricEvent(firstEvent: myEvent.firstEvent, secondEvent: myEvent.secondEvent, thirdEvent: myEvent.thirdEvent, fourthEvent: myEvent.fourthEvent, keyOfEvents: myEvent.keyDict)
+            firstEventLabel.text = historic_event.firstEvent
+            secondEventLabel.text  = historic_event.secondEvent
+            thirdEventLabel.text = historic_event.thirdEvent
+            fourthEventLabel.text = historic_event.fourthEvent
+        keyDict = myEvent.keyDict
     }
     
     func update() {
-        
         if(count > 0){
             let minutes = String(count / 60)
             let seconds = String(count % 60)
             countDownLabel.text = minutes + ":" + seconds
             count -= 1
-        } else if count == 0 {
-            // do suttin
+        } else {
+            //roundOverCheckResult()
+        }
+    }
+    
+    /*func roundOverCheckResult(){
+        if keyDict != nil {
+            let firstKey = keyDict?.minElement()
+            if firstKey != nil {
+                if firstEventLabel.text == historicEventsDict[firstKey!] {
+                    points += 1
+                }
+            }
         }
         
-    }
+        pointLabel.text = "\(points)"
+    }*/
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
