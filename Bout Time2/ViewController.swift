@@ -99,8 +99,6 @@ class ViewController: UIViewController {
             hideElements()
             beginGameOutlet.hidden = false
             pointLabel.hidden = false
-            
-            //nextRound()
         }
     }
     
@@ -198,6 +196,11 @@ class ViewController: UIViewController {
             
             if roundPoints == 4 {
                 updatePointLabel()
+                let successImage: UIImage = UIImage(named: "next_round_success")!
+                nextRoundOutlet.setBackgroundImage(successImage, forState: .Normal)
+            } else {
+                let failImage: UIImage = UIImage(named: "next_round_fail")!
+              nextRoundOutlet.setBackgroundImage(failImage, forState: .Normal)
             }
         }
     }
@@ -210,7 +213,7 @@ class ViewController: UIViewController {
     
     func updatePointLabel(){
         points += 1
-        pointLabel.text = "Game Points: \(points)/6"
+        pointLabel.text = "Points: \(points)/6"
     }
 
     override func didReceiveMemoryWarning() {
