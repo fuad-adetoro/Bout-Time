@@ -13,7 +13,7 @@ var historicEventsDict: [Int: String] = [1: "Beggining of World War One", 20: "S
 
 
 struct SendEvent {
-    func sendEvent() -> (firstEvent: String?, secondEvent: String?, thirdEvent: String?, fourthEvent: String?){
+    func sendEvent() -> (firstEvent: String?, secondEvent: String?, thirdEvent: String?, fourthEvent: String?, keyDict: [Int]?){
         let firstIndex = Int(arc4random_uniform(UInt32(historicEventsDict.count)))
         var secondIndex = Int(arc4random_uniform(UInt32(historicEventsDict.count)))
         var thirdIndex = Int(arc4random_uniform(UInt32(historicEventsDict.count)))
@@ -32,7 +32,11 @@ struct SendEvent {
         } while fourthIndex == thirdIndex;
         
         
-        return (historicEventsDict[firstIndex], historicEventsDict[secondIndex],  historicEventsDict[thirdIndex], historicEventsDict[fourthIndex])
+        let keyDict = [firstIndex, secondIndex, thirdIndex, fourthIndex]
+        
+        
+        return (historicEventsDict[firstIndex], historicEventsDict[secondIndex],  historicEventsDict[thirdIndex], historicEventsDict[fourthIndex],
+        keyDict)
     }
 }
 
@@ -41,12 +45,14 @@ class HistoricEvent {
     var secondEvent: String?
     var thirdEvent: String?
     var fourthEvent: String?
+    var keyOfEvents: [Int]?
     
-    init(firstEvent: String?, secondEvent: String?, thirdEvent: String?, fourthEvent: String?){
+    init(firstEvent: String?, secondEvent: String?, thirdEvent: String?, fourthEvent: String?, keyOfEvents: [Int]?){
         self.firstEvent = firstEvent
         self.secondEvent = secondEvent
         self.thirdEvent = thirdEvent
         self.fourthEvent = fourthEvent
+        self.keyOfEvents = keyOfEvents
     }
 }
 
